@@ -20,6 +20,13 @@ var_dump($status);
 
 $playerStatus = $cli->getPlayerStatus('garanis');
 var_dump($playerStatus);
+$playerAvatar = $cli->getPlayerAvatar('garanis');
+if(isset($playerAvatar['large'])){
+  $playerAvatar = $playerAvatar['large'];
+  echo "<img src=\"$playerAvatar\" />";
+}
+$playerInfo = $cli->getPlayerInfo('garanis');
+var_dump($playerInfo);
 
 ?>
   </body>

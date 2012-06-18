@@ -70,7 +70,32 @@ class ServiceDefinition {
             'noParameterKey' => true) // how long is max length?
         ),
         'append' => 'status'
+      ),
+      'get_player_avatar' => array(
+        'prepend' => 'player',
+        'params' => array(
+          'name' => array('type' => 'string',
+            'regex' => '/^[a-zA-Z0-9]+$/',
+            'minlength' => 1,
+            'maxlength' => 100,
+            'required' => true,
+            'noParameterKey' => true) // how long is max length?
+        ),
+        'append' => 'avatar'
+      ),
+      'get_player_info' => array(
+        'prepend' => 'player',
+        'params' => array(
+          'name' => array('type' => 'string',
+            'regex' => '/^[a-zA-Z0-9]+$/',
+            'minlength' => 1,
+            'maxlength' => 100,
+            'required' => true,
+            'noParameterKey' => true) // how long is max length?
+        ),
+        'append' => 'info'
       )
+      
     )
   );
 

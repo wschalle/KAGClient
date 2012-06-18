@@ -120,9 +120,10 @@ class Client {
   
   public function getServerList(array $parameters = array())
   {
-    $prepend = "servers";
-    $append = '';
     $command = 'get_servers';
+    $prepend = $this->getPrepend($command);
+    $append = $this->getAppend($command);
+    
     if($this->verifyParameters($command, $parameters)) {
       $queryString = $this->buildParameterString($parameters, $command);
       return $this->executeRequest($prepend, $queryString, $append);        
@@ -131,9 +132,9 @@ class Client {
   
   public function getServerStatus(array $parameters = array())
   {
-    $prepend = "server";
-    $append = "status";
     $command = 'get_server_status';
+    $prepend = $this->getPrepend($command);
+    $append = $this->getAppend($command);
     
     if($this->verifyParameters($command, $parameters)) {
       $queryString = $this->buildParameterString($parameters, $command);
@@ -143,9 +144,9 @@ class Client {
   
   public function getServerMinimap(array $parameters = array())
   {
-    $prepend = "server";
-    $append = "minimap";
     $command = 'get_server_minimap';
+    $prepend = $this->getPrepend($command);
+    $append = $this->getAppend($command);
     
     if($this->verifyParameters($command, $parameters)) {
       $queryString = $this->buildParameterString($parameters, $command);
@@ -154,9 +155,37 @@ class Client {
   }
   
   public function getPlayerStatus($playerName) {
-    $prepend = "player";
-    $append = "status";
     $command = 'get_player_status';
+    $prepend = $this->getPrepend($command);
+    $append = $this->getAppend($command);
+    
+    $parameters = array('name' => $playerName);
+    
+    if($this->verifyParameters($command, $parameters)) {
+      $queryString = $this->buildParameterString($parameters, $command);
+      return $this->executeRequest($prepend, $queryString, $append);
+    }
+      
+  }
+  
+  public function getPlayerAvatar($playerName) {
+    $command = 'get_player_avatar';
+    $prepend = $this->getPrepend($command);
+    $append = $this->getAppend($command);
+    
+    $parameters = array('name' => $playerName);
+    
+    if($this->verifyParameters($command, $parameters)) {
+      $queryString = $this->buildParameterString($parameters, $command);
+      return $this->executeRequest($prepend, $queryString, $append);
+    }
+      
+  }
+  
+  public function getPlayerInfo($playerName) {
+    $command = 'get_player_info';
+    $prepend = $this->getPrepend($command);
+    $append = $this->getAppend($command);
     
     $parameters = array('name' => $playerName);
     
@@ -225,6 +254,22 @@ class Client {
     
     return true;
   }
+  
+  private function getPrepend($command)
+  {
+    $def = ServiceDefinition::getCommandDefinition($command);
+    $prepend = $def['prepend'];
+    return $prepend;
+  }
+  
+  private function getAppend($command)
+  {
+    $def = ServiceDefinition::getCommandDefinition($command);
+    $append = $def['append'];
+    return $append;
+  }
+  
+  
   
 }
 
