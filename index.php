@@ -17,6 +17,10 @@ $server = $list['serverList'][0];
 $status = $cli->getServerStatus(array('ip' => $server['serverIPv4Address'], 'port' => $server['serverPort']));
 
 var_dump($status);
+
+$playerStatus = $cli->getPlayerStatus('garanis');
+var_dump($playerStatus);
+
 ?>
   </body>
 </html>

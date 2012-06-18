@@ -58,6 +58,18 @@ class ServiceDefinition {
             'required' => true)
         ),
         'append' => 'minimap'
+      ),
+      'get_player_status' => array(
+        'prepend' => 'player',
+        'params' => array(
+          'name' => array('type' => 'string',
+            'regex' => '/^[a-zA-Z0-9]+$/',
+            'minlength' => 1,
+            'maxlength' => 100,
+            'required' => true,
+            'noParameterKey' => true) // how long is max length?
+        ),
+        'append' => 'status'
       )
     )
   );

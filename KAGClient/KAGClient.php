@@ -44,12 +44,18 @@ class Client {
     }
   }
   
-  private function buildParameterString($parameters)
+  private function buildParameterString($parameters, $command)
   {
     $queryString = '';
+    
+    $def = ServiceDefinition::getCommandDefinition($command);
+    
     foreach($parameters as $key => $value)
     {
-      $queryString .= "/$key/$value";
+      if($def['params'][$key]['noParameterKey'])
+        $queryString .= "/$value";
+      else
+        $queryString .= "/$key/$value";
     }
     
     return $queryString;
@@ -116,8 +122,9 @@ class Client {
   {
     $prepend = "servers";
     $append = '';
-    if($this->verifyParameters('get_servers', $parameters)) {
-      $queryString = $this->buildParameterString($parameters);
+    $command = 'get_servers';
+    if($this->verifyParameters($command, $parameters)) {
+      $queryString = $this->buildParameterString($parameters, $command);
       return $this->executeRequest($prepend, $queryString, $append);        
     }
   }
@@ -126,9 +133,10 @@ class Client {
   {
     $prepend = "server";
     $append = "status";
+    $command = 'get_server_status';
     
-    if($this->verifyParameters('get_server_status', $parameters)) {
-      $queryString = $this->buildParameterString($parameters);
+    if($this->verifyParameters($command, $parameters)) {
+      $queryString = $this->buildParameterString($parameters, $command);
       return $this->executeRequest($prepend, $queryString, $append);        
     }
   }
@@ -137,11 +145,26 @@ class Client {
   {
     $prepend = "server";
     $append = "minimap";
+    $command = 'get_server_minimap';
     
-    if($this->verifyParameters('get_server_minimap', $parameters)) {
-      $queryString = $this->buildParameterString($parameters);
+    if($this->verifyParameters($command, $parameters)) {
+      $queryString = $this->buildParameterString($parameters, $command);
       return $this->executeRequest($prepend, $queryString, $append);        
     }
+  }
+  
+  public function getPlayerStatus($playerName) {
+    $prepend = "player";
+    $append = "status";
+    $command = 'get_player_status';
+    
+    $parameters = array('name' => $playerName);
+    
+    if($this->verifyParameters($command, $parameters)) {
+      $queryString = $this->buildParameterString($parameters, $command);
+      return $this->executeRequest($prepend, $queryString, $append);
+    }
+      
   }
   
   private function verifyParameters($command, array $parameters) {
