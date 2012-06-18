@@ -2,7 +2,7 @@
 use KAGClient\Client as Client;
 ini_set('display_errors', 1);
 
-require_once 'KAGClient.php';
+require_once 'KAGClient\KAGClient.php';
 ?><!DOCTYPE html>
 <html>
   <head>
@@ -12,7 +12,11 @@ require_once 'KAGClient.php';
   <body>
     <?php
 $cli = new Client();
-var_dump($cli->getServerStatus(array('ip' => '199.168.184.8', 'port' => '23002')));
+$list = $cli->getServerList();
+$server = $list['serverList'][0];
+$status = $cli->getServerStatus(array('ip' => $server['serverIPv4Address'], 'port' => $server['serverPort']));
+
+var_dump($status);
 ?>
   </body>
 </html>

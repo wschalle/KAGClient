@@ -112,7 +112,7 @@ class Client {
     return $response;
   }
   
-  public function getServerList(array $parameters)
+  public function getServerList(array $parameters = array())
   {
     $prepend = "servers";
     $append = '';
@@ -122,7 +122,7 @@ class Client {
     }
   }
   
-  public function getServerStatus(array $parameters)
+  public function getServerStatus(array $parameters = array())
   {
     $prepend = "server";
     $append = "status";
@@ -133,7 +133,7 @@ class Client {
     }
   }
   
-  public function getServerMinimap(array $parameters)
+  public function getServerMinimap(array $parameters = array())
   {
     $prepend = "server";
     $append = "minimap";
