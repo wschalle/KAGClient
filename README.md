@@ -3,9 +3,19 @@ KAGCLient
 
 KAG API Client library for PHP
 
+Requirements
+=========
+
+PHP 5.3
+Curl php extension
+
+Description
+=========
+
 This is a simple client lib for PHP.
 
-To use:
+Usage
+=========
 
 use KAGClient\Client as Client;
 
