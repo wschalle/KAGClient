@@ -52,12 +52,14 @@ class Client {
     
     foreach($parameters as $key => $value)
     {
-      if($def['params'][$key]['noParameterKey'])
+      if(isset($def['params'][$key]['urlEncode']) && $def['params'][$key]['urlEncode'] == true)
+        $value = rawurlencode($value);
+      
+      if(isset($def['params'][$key]['noParameterKey']) && $def['params'][$key]['noParameterKey'] == true)
         $queryString .= "/$value";
       else
         $queryString .= "/$key/$value";
     }
-    
     return $queryString;
   }
   

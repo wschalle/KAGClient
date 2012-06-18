@@ -25,8 +25,11 @@ if(isset($playerAvatar['large'])){
   $playerAvatar = $playerAvatar['large'];
   echo "<img src=\"$playerAvatar\" />";
 }
-$playerInfo = $cli->getPlayerInfo('garanis');
-var_dump($playerInfo);
+//$playerInfo = $cli->getPlayerInfo('garanis');
+//var_dump($playerInfo);
+
+//$servers = $cli->getServerList(array('gameMode' => 'Zombie Fortress'));
+//var_dump($servers);
 
 ?>
   </body>

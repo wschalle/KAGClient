@@ -26,7 +26,22 @@ class ServiceDefinition {
           'gold' => array('type' => 'boolean', 'required' => false),
           'minPlayerPercentage' => array('type' => 'float', 'min' => 0, 'max' => 1, 'required' => false),
           'maxPlayerPercentage' => array('type' => 'float', 'min' => 0, 'max' => 1, 'required' => false),
-          'password' => array('type' => 'boolean', 'required' => false)
+          'password' => array('type' => 'boolean', 'required' => false),
+          'full' => array('type' => 'boolean', 'required' => false),
+          'empty' => array('type' => 'boolean', 'required' => false),
+          'gameMode' => array('type' => 'string', 'required' => false, 'urlEncode' => true),
+          'maxPlayers' => array('type' => 'integer', 'min' => 0, 'max' => 1000, 'required' => false),
+          'mostCurrentPlayers' => array('type' => 'integer', 'required' => false),
+          'leastCurrentPlayers' => array('type' => 'integer', 'required' => false),
+          'mostMaxPlayers' => array('type' => 'integer', 'required' => false),
+          'leastMaxPlayers' => array('type' => 'integer', 'required' => false),
+          //'lastUpdated',
+          //'firstSeen',
+          'preferAF' => array('type' => 'boolean', 'required' => false),
+          'nameContains' => array('type' => 'string', 'required' => false, 'urlEncode' => true),
+          'name' => array('type' => 'string', 'required' => false, 'urlEncode' => true),
+          'descriptionContains' => array('type' => 'string', 'required' => false, 'urlEncode' => true),
+          'description' => array('type' => 'string', 'required' => false, 'urlEncode' => true),          
         )
       ),
       'get_server_status' => array(
