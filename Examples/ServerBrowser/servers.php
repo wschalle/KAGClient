@@ -81,10 +81,11 @@ usort($servers, $sortFunction);
     </div>
   <div class="container">
     <?php foreach($servers as $server):?>
+    <?php $serverIp = (isset($server['serverIPv4Address']))?$server['serverIPv4Address']:$server['serverIPv6Address'];?>
     <div class="row server-row">
       <div class="span5">
         <div class="server-name">
-          <h2><a href="kag://<?php echo $server['serverIPv4Address'] . ':' . $server['serverPort']?>"><?php echo $server['serverName']?></a></h2>
+          <h2><a href="kag://<?php echo $serverIp . ':' . $server['serverPort']?>"><?php echo $server['serverName']?></a></h2>
         </div>
         <div class="server-desc">
           <p><?php echo $server['description']?></p>
