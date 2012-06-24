@@ -1,6 +1,6 @@
 <?php
 /**
- * KAG REST API Client V0.1
+ * KAG REST API Client V0.2
  *
  * author: William Schaller
  * contact: wschalle@gmail.com

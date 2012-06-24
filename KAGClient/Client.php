@@ -1,6 +1,6 @@
 <?php
 /**
- * KAG REST API Client V0.1
+ * KAG REST API Client V0.2
  *
  * author: William Schaller
  * contact: wschalle@gmail.com
@@ -10,11 +10,8 @@
 
 namespace KAGClient;
 
-require_once 'serviceDefinition.php';
-require_once 'ParseUtils.php';
-
 /**
- * KAG REST API Client V0.1
+ * KAG REST API Client V0.2
  *
  */
 class Client {
@@ -84,6 +81,11 @@ class Client {
     $responseInfo = curl_getinfo($curl);
     $responseInfo['response'] = $response;
     curl_close($curl);
+    
+    if($responseInfo['http_code'] != 200)
+    {
+      return $this->formatResponse($responseInfo);      
+    }
     
     return $this->formatResponse($this->recognizeResponse($responseInfo));
   }

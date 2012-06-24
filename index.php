@@ -2,7 +2,7 @@
 use KAGClient\Client as Client;
 ini_set('display_errors', 1);
 
-require_once 'KAGClient\KAGClient.php';
+require_once 'KAGClient\bootstrap.php';
 ?><!DOCTYPE html>
 <html>
   <head>

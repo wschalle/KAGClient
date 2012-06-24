@@ -1,0 +1,23 @@
+.server-name {
+  
+}
+
+.server-minimap img{
+  border: 1px solid black;
+  padding: 3px;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+.server-row {
+  margin-top: 10px;
+}
+
+.server-desc {
+  border-bottom: 1px solid #aaa;
+}
+
+.server-stats td:last-child {
+  padding-left: 8px;
+}
