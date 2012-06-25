@@ -85,7 +85,13 @@ usort($servers, $sortFunction);
     <div class="row server-row">
       <div class="span5">
         <div class="server-name">
-          <h2><a href="kag://<?php echo $serverIp . ':' . $server['serverPort']?>"><?php echo $server['serverName']?></a></h2>
+          <h2>
+            <a href="kag://<?php echo $serverIp . ':' . $server['serverPort']?>"><?php echo $server['serverName']?></a> 
+            <a class="btn" href="#" onclick="getServerInfo(this, '<?php echo $serverIp . "','" . $server['serverPort']?>')"><i class="icon-search"></i> Info</a>
+            <a href="kag://<?php echo $serverIp . ':' . $server['serverPort'] ?>" class="btn btn-success"><i class="icon-play icon-white"></i> Play</a> 
+          </h2>
+          
+          
         </div>
         <div class="server-desc">
           <p><?php echo $server['description']?></p>
@@ -127,8 +133,32 @@ usort($servers, $sortFunction);
       </div>
     </div>
     <?php endforeach;?>
+    <div id="modalServerInfo" class="modal hide">
+    </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
+  <script>
+  $(function () {
+    //$('#modalServerInfo').modal();
+    $('#modalServerInfo').modal('hide');
+  })
+  
+  var currentlyLoadingButton;
+  
+  function getServerInfo(button, ip, port)
+  {
+    $(button).button('loading')
+    currentlyLoadingButton = button;
+    //$('#modalServerInfo').html('<div id="mo-center"><div id="mo-main"><p>This text is perfectly vertically and horizontally centered.</p></div></div>');
+    $.get('server.php?ip=' + ip + '&port=' + port, null, serverInfoSuccess, 'html');
+  }
+  
+  function serverInfoSuccess(data) {
+    $(currentlyLoadingButton).button('reset');
+    $('#modalServerInfo').html(data);
+    $('#modalServerInfo').modal('show');
+  }
+  </script>
 </body>
 </html>

@@ -21,3 +21,6 @@
 .server-stats td:last-child {
   padding-left: 8px;
 }
+
+#mo-center { position: absolute; top: 50%; width: 100%; height: 1px; overflow: visible }
+#mo-main { position: absolute; left: 50%; width: 720px; margin-left: -360px; height: 540px; top: -270px }
